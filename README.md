@@ -1,4 +1,4 @@
-# Flow Forge - Sistema de Transformação de Dados Visual
+# Lynt Flow CMS - Sistema de Transformação de Dados Visual
 
 Uma aplicação de transformação de dados com programação visual estilo blueprint, similar à Unreal Engine.
 
@@ -69,5 +69,3 @@ src/
 └── types/
     └── node.types.js         # Tipos de nós
 ```
-# flow-cms
-# flow-cms
