@@ -6,21 +6,24 @@ export default defineConfig({
   base: '/',
   plugins: [vue()],
   build: {
-    // Otimizações para produção
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    },
+    // Usar esbuild para minificação (padrão do Vite, mais rápido)
+    minify: 'esbuild',
+    target: 'es2015',
     rollupOptions: {
       output: {
         // Separar vendors em chunks para melhor cache
-        manualChunks: {
-          'vue-vendor': ['vue', 'vue-router', 'pinia'],
-          'vue-flow': ['@vue-flow/core', '@vue-flow/background', '@vue-flow/controls', '@vue-flow/minimap'],
-          'utils': ['axios', 'jwt-decode', 'uuid']
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('vue') || id.includes('vue-router') || id.includes('pinia')) {
+              return 'vue-vendor';
+            }
+            if (id.includes('@vue-flow')) {
+              return 'vue-flow';
+            }
+            if (id.includes('axios') || id.includes('jwt-decode') || id.includes('uuid')) {
+              return 'utils';
+            }
+          }
         }
       }
     },
