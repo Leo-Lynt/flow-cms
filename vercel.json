@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vue",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_API_URL": "@flow_api_url",
+    "VITE_CMS_URL": "@flow_cms_url",
+    "VITE_EDITOR_URL": "@flow_editor_url"
+  }
+}
